@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { Clock, Calendar, Settings, Code, FileText } from 'lucide-react';
+import { Clock, Calendar, Settings, Code, FileText, Calculator, RotateCcw, MapPin, List, AlertCircle } from 'lucide-react';
 
 const Navigation = ({ activeSection, setActiveSection }: { 
   activeSection: string; 
@@ -10,8 +10,13 @@ const Navigation = ({ activeSection, setActiveSection }: {
     { id: 'intro', name: 'مقدمه', icon: FileText },
     { id: 'format', name: 'قالب‌بندی', icon: Calendar },
     { id: 'parse', name: 'تجزیه', icon: Code },
-    { id: 'calculate', name: 'محاسبات', icon: Clock },
+    { id: 'calculate', name: 'محاسبات', icon: Calculator },
     { id: 'compare', name: 'مقایسه', icon: Settings },
+    { id: 'get', name: 'دریافت مقادیر', icon: List },
+    { id: 'set', name: 'تنظیم مقادیر', icon: RotateCcw },
+    { id: 'helper', name: 'توابع کمکی', icon: AlertCircle },
+    { id: 'timezone', name: 'منطقه زمانی', icon: MapPin },
+    { id: 'constants', name: 'ثوابت', icon: Clock },
   ];
 
   return (

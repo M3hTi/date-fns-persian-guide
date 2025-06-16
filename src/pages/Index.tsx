@@ -7,6 +7,11 @@ import FormatSection from '../components/sections/FormatSection';
 import ParseSection from '../components/sections/ParseSection';
 import CalculateSection from '../components/sections/CalculateSection';
 import CompareSection from '../components/sections/CompareSection';
+import GetSection from '../components/sections/GetSection';
+import SetSection from '../components/sections/SetSection';
+import HelperSection from '../components/sections/HelperSection';
+import TimezoneSection from '../components/sections/TimezoneSection';
+import ConstantsSection from '../components/sections/ConstantsSection';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('intro');
@@ -23,6 +28,16 @@ const Index = () => {
         return <CalculateSection />;
       case 'compare':
         return <CompareSection />;
+      case 'get':
+        return <GetSection />;
+      case 'set':
+        return <SetSection />;
+      case 'helper':
+        return <HelperSection />;
+      case 'timezone':
+        return <TimezoneSection />;
+      case 'constants':
+        return <ConstantsSection />;
       default:
         return <IntroSection />;
     }
