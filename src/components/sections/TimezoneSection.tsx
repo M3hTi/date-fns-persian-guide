@@ -5,165 +5,161 @@ import CodeExample from '../CodeExample';
 const TimezoneSection = () => {
   return (
     <div className="space-y-8">
-      <div className="bg-gradient-to-r from-rose-50 to-pink-100 rounded-xl p-8 border border-rose-200">
-        <h2 className="text-3xl font-bold text-gray-900 mb-4">کار با منطقه زمانی</h2>
+      <div className="bg-gradient-to-r from-indigo-50 to-purple-100 rounded-xl p-8 border border-indigo-200">
+        <h2 className="text-3xl font-bold text-gray-900 mb-4">کار با مناطق زمانی</h2>
         <p className="text-lg text-gray-700 leading-relaxed">
-          برای کار حرفه‌ای با منطقه‌های زمانی، از کتابخانه date-fns-tz استفاده می‌کنیم که قابلیت‌های پیشرفته‌تری ارائه می‌دهد.
+          برای کار حرفه‌ای با مناطق زمانی، از کتابخانه date-fns-tz همراه با date-fns استفاده کنید.
         </p>
       </div>
 
       <CodeExample
         title="نصب date-fns-tz"
-        description="برای کار با منطقه زمانی، کتابخانه date-fns-tz را نصب کنید:"
-        code={`# نصب date-fns-tz
+        description="برای کار با timezone ابتدا کتابخانه date-fns-tz را نصب کنید:"
+        code={`# نصب کتابخانه timezone
 npm install date-fns-tz
 
 # یا با yarn
-yarn add date-fns-tz`}
+yarn add date-fns-tz
+
+# import توابع timezone
+import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';`}
       />
 
       <CodeExample
-        title="قالب‌بندی با منطقه زمانی"
-        description="نمایش تاریخ در منطقه‌های زمانی مختلف:"
-        code={`import { formatInTimeZone } from 'date-fns-tz';
+        title="تبدیل بین مناطق زمانی"
+        description="تبدیل زمان بین UTC و timezone مشخص:"
+        code={`import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';
+
+// منطقه زمانی تهران
+const tehranTZ = 'Asia/Tehran';
+const utc = new Date('2024-03-15T12:00:00.000Z');
+
+// تبدیل UTC به زمان محلی تهران
+const tehranTime = utcToZonedTime(utc, tehranTZ);
+console.log(format(tehranTime, 'yyyy-MM-dd HH:mm:ss zzz', { timeZone: tehranTZ }));
+// 2024-03-15 15:30:00 +0330
+
+// تبدیل زمان محلی به UTC
+const localTime = new Date('2024-03-15T15:30:00');
+const utcTime = zonedTimeToUtc(localTime, tehranTZ);
+console.log(format(utcTime, 'yyyy-MM-dd HH:mm:ss', { timeZone: 'UTC' }));
+// 2024-03-15 12:00:00`}
+        result="2024-03-15 15:30:00 +0330"
+      />
+
+      <CodeExample
+        title="فرمت کردن با timezone"
+        description="نمایش تاریخ با منطقه زمانی مشخص:"
+        code={`import { format } from 'date-fns-tz';
 import { faIR } from 'date-fns/locale';
 
-const date = new Date('2024-03-15T12:00:00Z'); // UTC
+const date = new Date('2024-03-15T12:00:00.000Z');
 
-// تهران (UTC+3:30)
-const tehranTime = formatInTimeZone(
-  date, 
-  'Asia/Tehran', 
-  'yyyy/MM/dd HH:mm:ss zzz'
-);
-console.log(tehranTime); // 2024/03/15 15:30:00 +0330
+// مناطق زمانی مختلف
+const timezones = [
+  'Asia/Tehran',     // تهران
+  'Europe/London',   // لندن  
+  'America/New_York', // نیویورک
+  'Asia/Tokyo'       // توکیو
+];
 
-// دبی (UTC+4)
-const dubaiTime = formatInTimeZone(
-  date, 
-  'Asia/Dubai', 
-  'yyyy/MM/dd HH:mm:ss zzz'
-);
-console.log(dubaiTime); // 2024/03/15 16:00:00 +04
+timezones.forEach(tz => {
+  const formatted = format(date, 'yyyy-MM-dd HH:mm:ss zzz', { 
+    timeZone: tz,
+    locale: faIR 
+  });
+  console.log(\`\${tz}: \${formatted}\`);
+});
 
-// با locale فارسی
-const persianTime = formatInTimeZone(
-  date, 
-  'Asia/Tehran', 
-  'EEEE، dd MMMM yyyy ساعت HH:mm',
-  { locale: faIR }
-);
-console.log(persianTime); // جمعه، ۲۴ اسفند ۱۴۰۲ ساعت ۱۵:۳۰`}
-        result="2024/03/15 15:30:00 +0330"
+// خروجی نمونه:
+// Asia/Tehran: ۲۰۲۴-۰۳-۱۵ ۱۵:۳۰:۰۰ +۰۳:۳۰
+// Europe/London: ۲۰۲۴-۰۳-۱۵ ۱۲:۰۰:۰۰ +۰۰:۰۰`}
+        result="Asia/Tehran: ۲۰۲۴-۰۳-۱۵ ۱۵:۳۰:۰۰"
       />
 
       <CodeExample
-        title="تبدیل منطقه زمانی"
-        description="تبدیل تاریخ بین منطقه‌های زمانی مختلف:"
-        code={`import { toZonedTime, fromZonedTime } from 'date-fns-tz';
-
-const utcDate = new Date('2024-03-15T12:00:00Z');
-
-// تبدیل UTC به منطقه زمانی محلی
-const tehranDate = toZonedTime(utcDate, 'Asia/Tehran');
-console.log(tehranDate); // Date object در زمان تهران
-
-// تبدیل از منطقه زمانی محلی به UTC
-const localDate = new Date(2024, 2, 15, 15, 30, 0); // 15:30 تهران
-const backToUTC = fromZonedTime(localDate, 'Asia/Tehran');
-console.log(backToUTC); // برگشت به UTC
-
-// مثال عملی: ذخیره در دیتابیس
-const userInputTime = '15:30'; // کاربر در تهران
-const userDate = new Date(\`2024-03-15T\${userInputTime}:00\`);
-const utcForStorage = fromZonedTime(userDate, 'Asia/Tehran');
-console.log(utcForStorage.toISOString()); // برای ذخیره در دیتابیس`}
-        result="2024-03-15T15:30:00.000+03:30"
-      />
-
-      <CodeExample
-        title="دریافت منطقه زمانی"
-        description="تشخیص و کار با منطقه زمانی فعلی:"
+        title="دریافت اطلاعات timezone"
+        description="دریافت offset و اطلاعات منطقه زمانی:"
         code={`import { getTimezoneOffset } from 'date-fns-tz';
 
-const date = new Date('2024-03-15T12:00:00Z');
+const date = new Date('2024-03-15T12:00:00.000Z');
 
-// دریافت offset منطقه زمانی (بر حسب دقیقه)
+// دریافت offset برای مناطق مختلف (بر حسب دقیقه)
 const tehranOffset = getTimezoneOffset('Asia/Tehran', date);
-console.log(tehranOffset); // -210 (معادل +03:30)
+console.log(\`تهران: \${tehranOffset / 60} ساعت\`); // +3.5 ساعت
 
-const dubaiOffset = getTimezoneOffset('Asia/Dubai', date);
-console.log(dubaiOffset); // -240 (معادل +04:00)
+const londonOffset = getTimezoneOffset('Europe/London', date);
+console.log(\`لندن: \${londonOffset / 60} ساعت\`); // 0 ساعت
 
-// تبدیل به ساعت
-const tehranHours = Math.abs(tehranOffset) / 60;
-console.log(\`تهران: UTC+\${tehranHours}\`); // تهران: UTC+3.5
+const newYorkOffset = getTimezoneOffset('America/New_York', date);
+console.log(\`نیویورک: \${newYorkOffset / 60} ساعت\`); // -4 یا -5 ساعت
 
-// دریافت منطقه زمانی مرورگر
-const browserTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-console.log(browserTimezone); // مثلاً "Asia/Tehran"
+// بررسی DST (تغییر ساعت تابستانی)
+const winter = new Date('2024-01-15T12:00:00.000Z');
+const summer = new Date('2024-07-15T12:00:00.000Z');
 
-// لیست منطقه‌های زمانی رایج ایران و منطقه
-const iranTimezones = [
-  'Asia/Tehran',
-  'Asia/Dubai',
-  'Asia/Kuwait',
-  'Asia/Riyadh'
-];`}
-        result="-210"
+console.log('زمستان:', getTimezoneOffset('Europe/London', winter));
+console.log('تابستان:', getTimezoneOffset('Europe/London', summer));`}
+        result="تهران: 3.5 ساعت"
       />
 
       <CodeExample
-        title="محاسبات با منطقه زمانی"
-        description="انجام محاسبات زمانی با در نظر گیری منطقه زمانی:"
-        code={`import { addHours, addDays, format } from 'date-fns';
-import { toZonedTime, formatInTimeZone } from 'date-fns-tz';
+        title="کار با Intl API"
+        description="استفاده از API های مرورگر برای timezone:"
+        code={`// دریافت timezone محلی کاربر
+const userTimezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+console.log('منطقه زمانی کاربر:', userTimezone);
 
-// تاریخ شروع در UTC
-const startUTC = new Date('2024-03-15T09:00:00Z');
+// لیست تمام timezone های موجود
+const timezones = Intl.supportedValuesOf('timeZone');
+console.log('تعداد timezone های پشتیبانی شده:', timezones.length);
 
-// تبدیل به زمان تهران برای نمایش
-const startTehran = toZonedTime(startUTC, 'Asia/Tehran');
+// فرمت کردن با Intl
+const date = new Date();
+const formatter = new Intl.DateTimeFormat('fa-IR', {
+  timeZone: 'Asia/Tehran',
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+  timeZoneName: 'short'
+});
 
-// اضافه کردن 8 ساعت کاری
-const endWorkDay = addHours(startUTC, 8);
+console.log(formatter.format(date));
+// خروجی: ۱۵ اسفند ۱۴۰۲، ۱۵:۳۰ +۰۳:۳۰
 
-// نمایش در منطقه زمانی تهران
-const workStart = formatInTimeZone(
-  startUTC, 
-  'Asia/Tehran', 
-  'HH:mm'
-);
-const workEnd = formatInTimeZone(
-  endWorkDay, 
-  'Asia/Tehran', 
-  'HH:mm'
-);
-
-console.log(\`شروع کار: \${workStart}\`); // شروع کار: 12:30
-console.log(\`پایان کار: \${workEnd}\`);   // پایان کار: 20:30
-
-// محاسبه تعطیلات با منطقه زمانی
-const vacation = addDays(startUTC, 7);
-const vacationDate = formatInTimeZone(
-  vacation,
-  'Asia/Tehran',
-  'yyyy/MM/dd'
-);
-console.log(\`شروع تعطیلات: \${vacationDate}\`);`}
-        result="شروع کار: 12:30"
+// اطلاعات کامل timezone
+const parts = formatter.formatToParts(date);
+console.log(parts);`}
+        result="منطقه زمانی کاربر: Asia/Tehran"
       />
 
-      <div className="bg-amber-50 border border-amber-200 rounded-lg p-6">
-        <h3 className="text-lg font-semibold text-amber-800 mb-3">نکات مهم منطقه زمانی</h3>
-        <ul className="space-y-2 text-amber-700 text-sm">
-          <li>• همیشه تاریخ‌ها را در UTC ذخیره کنید</li>
-          <li>• فقط برای نمایش از منطقه زمانی محلی استفاده کنید</li>
-          <li>• <code>Asia/Tehran</code> منطقه زمانی رسمی ایران است</li>
-          <li>• ایران تغییر ساعت تابستانی ندارد (از 2022)</li>
-          <li>• از <code>formatInTimeZone</code> برای نمایش استفاده کنید</li>
-          <li>• <code>toZonedTime</code> و <code>fromZonedTime</code> برای تبدیل</li>
+      <div className="bg-orange-50 border border-orange-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-orange-800 mb-3">نکات مهم در کار با Timezone</h3>
+        <ul className="space-y-2 text-orange-700 text-sm">
+          <li>• همیشه UTC را به عنوان مرجع اصلی در پایگاه داده ذخیره کنید</li>
+          <li>• از timezone های IANA استاندارد استفاده کنید (مثل Asia/Tehran)</li>
+          <li>• تغییر ساعت تابستانی (DST) را در نظر بگیرید</li>
+          <li>• برای نمایش به کاربر، از timezone محلی او استفاده کنید</li>
+          <li>• در محاسبات، همیشه به UTC تبدیل کنید</li>
         </ul>
+      </div>
+
+      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6">
+        <h3 className="text-lg font-semibold text-blue-800 mb-3">مناطق زمانی رایج ایران و منطقه</h3>
+        <div className="grid md:grid-cols-2 gap-4 text-sm text-blue-700">
+          <div className="space-y-1">
+            <div><code>Asia/Tehran</code> - ایران (+3:30)</div>
+            <div><code>Asia/Dubai</code> - امارات (+4:00)</div>
+            <div><code>Asia/Kuwait</code> - کویت (+3:00)</div>
+          </div>
+          <div className="space-y-1">
+            <div><code>Europe/Istanbul</code> - ترکیه (+3:00)</div>
+            <div><code>Asia/Baku</code> - آذربایجان (+4:00)</div>
+            <div><code>Asia/Ashgabat</code> - ترکمنستان (+5:00)</div>
+          </div>
+        </div>
       </div>
     </div>
   );
