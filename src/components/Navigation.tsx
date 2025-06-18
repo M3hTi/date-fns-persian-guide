@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { 
   Clock, Calendar, Settings, Code, FileText, Calculator, RotateCcw, MapPin, List, AlertCircle,
   RefreshCw, Timer, Zap, Hourglass, Sun, Hash, CalendarDays, Target, Layers, Milestone,
-  ChevronDown, Menu, X
+  ChevronDown, Menu, X, BookOpen
 } from 'lucide-react';
 
 const Navigation = ({ activeSection, setActiveSection }: { 
@@ -13,6 +13,15 @@ const Navigation = ({ activeSection, setActiveSection }: {
   const [isOpen, setIsOpen] = useState(false);
 
   const categories = [
+    {
+      id: 'explanations',
+      name: 'توضیح توابع',
+      sections: [
+        { id: 'method-explanations', name: 'توضیح کامل توابع' },
+        { id: 'get-methods', name: 'توابع دریافت (Get)' },
+        { id: 'set-methods', name: 'توابع تنظیم (Set)' },
+      ]
+    },
     {
       id: 'core',
       name: 'اصول پایه',

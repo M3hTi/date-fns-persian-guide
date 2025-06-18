@@ -29,6 +29,9 @@ import YearHelpersSection from '../components/sections/YearHelpersSection';
 import ISOWeekYearHelpersSection from '../components/sections/ISOWeekYearHelpersSection';
 import DecadeHelpersSection from '../components/sections/DecadeHelpersSection';
 import GenericHelpersSection from '../components/sections/GenericHelpersSection';
+import MethodExplanationsSection from '../components/sections/MethodExplanationsSection';
+import GetMethodsSection from '../components/sections/GetMethodsSection';
+import SetMethodsSection from '../components/sections/SetMethodsSection';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('intro');
@@ -37,6 +40,12 @@ const Index = () => {
     switch (activeSection) {
       case 'intro':
         return <IntroSection />;
+      case 'method-explanations':
+        return <MethodExplanationsSection />;
+      case 'get-methods':
+        return <GetMethodsSection />;
+      case 'set-methods':
+        return <SetMethodsSection />;
       case 'format':
         return <FormatSection />;
       case 'parse':
