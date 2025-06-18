@@ -1,8 +1,5 @@
 # Welcome to your Lovable project
 
-## Project info
-
-**URL**: https://lovable.dev/projects/ca2f2ab0-94cd-452f-adf2-60c71b216ae9
 
 ## How can I edit this code?
 
@@ -20,6 +17,7 @@ If you want to work locally using your own IDE, you can clone this repo and push
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
+
 Follow these steps:
 
 ```sh
@@ -29,8 +27,13 @@ git clone <YOUR_GIT_URL>
 # Step 2: Navigate to the project directory.
 cd <YOUR_PROJECT_NAME>
 
+
+
 # Step 3: Install the necessary dependencies.
 npm i
+
+
+
 
 # Step 4: Start the development server with auto-reloading and an instant preview.
 npm run dev
@@ -43,6 +46,9 @@ npm run dev
 - Make your changes and commit the changes.
 
 **Use GitHub Codespaces**
+
+
+
 
 - Navigate to the main page of your repository.
 - Click on the "Code" button (green button) near the top right.
@@ -71,3 +77,19 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
