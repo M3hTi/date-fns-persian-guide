@@ -1,50 +1,37 @@
 
 import React from 'react';
-import { Calendar, Book, Star, Github } from 'lucide-react';
+import { Calendar, Book, Star } from 'lucide-react';
 
 const Header = () => {
   return (
-    <header className="bg-gradient-to-r from-slate-900 via-blue-900 to-indigo-900 text-white py-8 shadow-2xl relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width=%2260%22%20height=%2260%22%20viewBox=%220%200%2060%2060%22%20xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cg%20fill=%22none%22%20fill-rule=%22evenodd%22%3E%3Cg%20fill=%22%23ffffff%22%20fill-opacity=%220.05%22%3E%3Ccircle%20cx=%2230%22%20cy=%2230%22%20r=%224%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')] opacity-20"></div>
-      
-      <div className="container mx-auto px-4 relative">
+    <header className="bg-white border-b border-gray-200 py-8">
+      <div className="container mx-auto px-4">
         <div className="flex items-center justify-between">
-          <div className="flex items-center space-x-6 rtl:space-x-reverse">
-            <div className="bg-gradient-to-br from-yellow-400 to-orange-500 p-3 rounded-xl shadow-lg">
-              <Calendar className="w-10 h-10 text-white" />
+          <div className="flex items-center space-x-4 rtl:space-x-reverse">
+            <div className="bg-blue-500 p-3 rounded-xl">
+              <Calendar className="w-8 h-8 text-white" />
             </div>
             <div>
-              <h1 className="text-4xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent mb-2">
+              <h1 className="text-3xl font-bold text-gray-900 mb-1">
                 مستندات جامع date-fns
               </h1>
-              <p className="text-blue-200 text-lg font-medium">
+              <p className="text-gray-600 text-base">
                 راهنمای کامل فارسی کتابخانه date-fns برای توسعه‌دهندگان
               </p>
-              <div className="flex items-center space-x-4 rtl:space-x-reverse mt-3">
-                <div className="flex items-center space-x-2 rtl:space-x-reverse text-sm text-blue-300">
-                  <Star className="w-4 h-4" />
-                  <span>بیش از 200 تابع</span>
-                </div>
-                <div className="flex items-center space-x-2 rtl:space-x-reverse text-sm text-blue-300">
-                  <Book className="w-4 h-4" />
-                  <span>20+ دسته‌بندی</span>
-                </div>
-              </div>
             </div>
           </div>
           
           <div className="hidden md:flex items-center space-x-4 rtl:space-x-reverse">
             <div className="text-right">
-              <div className="bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2 border border-white/20">
-                <div className="text-sm text-blue-200">نسخه date-fns</div>
-                <div className="text-lg font-bold text-white">3.6+</div>
+              <div className="bg-gray-50 rounded-lg px-4 py-3 border border-gray-200">
+                <div className="text-xs text-gray-500 mb-1">نسخه date-fns</div>
+                <div className="text-sm font-semibold text-gray-900">3.6+</div>
               </div>
             </div>
             <div className="text-right">
-              <div className="bg-gradient-to-r from-green-500 to-emerald-600 rounded-lg px-4 py-2 shadow-lg">
-                <div className="text-sm text-green-100">وضعیت</div>
-                <div className="text-lg font-bold text-white">به‌روز</div>
+              <div className="bg-green-50 rounded-lg px-4 py-3 border border-green-200">
+                <div className="text-xs text-green-600 mb-1">وضعیت</div>
+                <div className="text-sm font-semibold text-green-700">به‌روز</div>
               </div>
             </div>
           </div>
