@@ -12,6 +12,23 @@ import SetSection from '../components/sections/SetSection';
 import HelperSection from '../components/sections/HelperSection';
 import TimezoneSection from '../components/sections/TimezoneSection';
 import ConstantsSection from '../components/sections/ConstantsSection';
+import ConversionHelpersSection from '../components/sections/ConversionHelpersSection';
+import IntervalHelpersSection from '../components/sections/IntervalHelpersSection';
+import TimestampHelpersSection from '../components/sections/TimestampHelpersSection';
+import MillisecondHelpersSection from '../components/sections/MillisecondHelpersSection';
+import SecondHelpersSection from '../components/sections/SecondHelpersSection';
+import MinuteHelpersSection from '../components/sections/MinuteHelpersSection';
+import HourHelpersSection from '../components/sections/HourHelpersSection';
+import DayHelpersSection from '../components/sections/DayHelpersSection';
+import WeekdayHelpersSection from '../components/sections/WeekdayHelpersSection';
+import WeekHelpersSection from '../components/sections/WeekHelpersSection';
+import ISOWeekHelpersSection from '../components/sections/ISOWeekHelpersSection';
+import MonthHelpersSection from '../components/sections/MonthHelpersSection';
+import QuarterHelpersSection from '../components/sections/QuarterHelpersSection';
+import YearHelpersSection from '../components/sections/YearHelpersSection';
+import ISOWeekYearHelpersSection from '../components/sections/ISOWeekYearHelpersSection';
+import DecadeHelpersSection from '../components/sections/DecadeHelpersSection';
+import GenericHelpersSection from '../components/sections/GenericHelpersSection';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('intro');
@@ -38,30 +55,78 @@ const Index = () => {
         return <TimezoneSection />;
       case 'constants':
         return <ConstantsSection />;
+      case 'conversion':
+        return <ConversionHelpersSection />;
+      case 'interval':
+        return <IntervalHelpersSection />;
+      case 'timestamp':
+        return <TimestampHelpersSection />;
+      case 'millisecond':
+        return <MillisecondHelpersSection />;
+      case 'second':
+        return <SecondHelpersSection />;
+      case 'minute':
+        return <MinuteHelpersSection />;
+      case 'hour':
+        return <HourHelpersSection />;
+      case 'day':
+        return <DayHelpersSection />;
+      case 'weekday':
+        return <WeekdayHelpersSection />;
+      case 'week':
+        return <WeekHelpersSection />;
+      case 'isoweek':
+        return <ISOWeekHelpersSection />;
+      case 'month':
+        return <MonthHelpersSection />;
+      case 'quarter':
+        return <QuarterHelpersSection />;
+      case 'year':
+        return <YearHelpersSection />;
+      case 'isoweekyear':
+        return <ISOWeekYearHelpersSection />;
+      case 'decade':
+        return <DecadeHelpersSection />;
+      case 'generic':
+        return <GenericHelpersSection />;
       default:
         return <IntroSection />;
     }
   };
 
   return (
-    <div className="min-h-screen bg-gray-50" dir="rtl">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100" dir="rtl">
       <Header />
       <Navigation activeSection={activeSection} setActiveSection={setActiveSection} />
       
       <main className="container mx-auto px-4 py-8">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-5xl mx-auto">
           {renderSection()}
         </div>
       </main>
 
-      <footer className="bg-gray-800 text-white py-8 mt-16">
-        <div className="container mx-auto px-4 text-center">
-          <p className="text-gray-300 mb-4">
-            مستندات فارسی date-fns - ساخته شده با ❤️ برای توسعه‌دهندگان ایرانی
-          </p>
-          <div className="text-sm text-gray-400">
-            <span>نسخه date-fns: 3.0+ | </span>
-            <span>آخرین بروزرسانی: 1403/03/27</span>
+      <footer className="bg-gradient-to-r from-slate-900 via-gray-900 to-slate-900 text-white py-12 mt-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <div className="mb-6">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 mb-2">
+                مستندات جامع date-fns
+              </h3>
+              <p className="text-gray-300 text-lg">
+                راهنمای کامل و به‌روز برای توسعه‌دهندگان ایرانی
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center items-center gap-6 text-sm text-gray-400">
+              <span className="flex items-center gap-2">
+                📚 بیش از 200 تابع مستند شده
+              </span>
+              <span className="flex items-center gap-2">
+                🌟 نسخه date-fns: 3.6+
+              </span>
+              <span className="flex items-center gap-2">
+                🚀 آخرین بروزرسانی: 1403/03/27
+              </span>
+            </div>
           </div>
         </div>
       </footer>
