@@ -1,8 +1,10 @@
 
 import React from 'react';
 import { Calendar, Book, Star, Github, ExternalLink } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <header className="bg-white border-b border-gray-200 py-8">
       <div className="container mx-auto px-4">
@@ -13,7 +15,7 @@ const Header = () => {
             </div>
             <div>
               <button 
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                onClick={() => navigate('/')}
                 className="group"
               >
                 <h1 className="text-3xl font-bold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors cursor-pointer">
@@ -31,11 +33,15 @@ const Header = () => {
               href="https://github.com/M3hTi/date-fns-persian-guide"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center space-x-2 rtl:space-x-reverse bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800 transition-colors"
+              className="text-right"
             >
-              <Github className="w-4 h-4" />
-              <span className="text-sm font-medium">مشاهده در GitHub</span>
-              <ExternalLink className="w-3 h-3" />
+              <div className="bg-gray-50 rounded-lg px-4 py-3 border border-gray-200 hover:bg-gray-100 transition-colors group">
+                <div className="flex items-center justify-end space-x-2 rtl:space-x-reverse mb-1">
+                  <ExternalLink className="w-3 h-3 text-gray-500" />
+                  <Github className="w-4 h-4 text-gray-500" />
+                </div>
+                <div className="text-sm font-semibold text-gray-900 group-hover:text-blue-600">GitHub مخزن</div>
+              </div>
             </a>
             <div className="text-right">
               <div className="bg-gray-50 rounded-lg px-4 py-3 border border-gray-200">
