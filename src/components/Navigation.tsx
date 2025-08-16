@@ -45,6 +45,10 @@ const Navigation = ({ activeSection, setActiveSection }: {
         { id: 'interval', name: 'بازه‌های زمانی' },
         { id: 'timestamp', name: 'Unix Timestamp' },
         { id: 'generic', name: 'توابع عمومی' },
+        { id: 'validation', name: 'اعتبارسنجی' },
+        { id: 'utility', name: 'توابع کاربردی' },
+        { id: 'duration', name: 'مدت زمان' },
+        { id: 'difference', name: 'محاسبه تفاوت' },
       ]
     },
     {
