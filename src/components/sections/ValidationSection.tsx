@@ -185,8 +185,8 @@ const testInputs = [
 
 testInputs.forEach((input, index) => {
   const result = validateDateTime(input);
-  console.log(`ورودی ${index + 1}:`, result.valid ? 'معتبر' : result.errors.join(', '));
-});
+  console.log(\`ورودی \${index + 1}:\`, result.valid ? 'معتبر' : result.errors.join(', '));
+});`}
         result="ورودی 1: معتبر"
       />
 
