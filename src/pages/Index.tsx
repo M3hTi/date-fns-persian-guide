@@ -32,6 +32,10 @@ import GenericHelpersSection from '../components/sections/GenericHelpersSection'
 import MethodExplanationsSection from '../components/sections/MethodExplanationsSection';
 import GetMethodsSection from '../components/sections/GetMethodsSection';
 import SetMethodsSection from '../components/sections/SetMethodsSection';
+import ValidationSection from '../components/sections/ValidationSection';
+import UtilitySection from '../components/sections/UtilitySection';
+import DurationSection from '../components/sections/DurationSection';
+import DifferenceSection from '../components/sections/DifferenceSection';
 
 const Index = () => {
   const [activeSection, setActiveSection] = useState('intro');
@@ -98,6 +102,14 @@ const Index = () => {
         return <DecadeHelpersSection />;
       case 'generic':
         return <GenericHelpersSection />;
+      case 'validation':
+        return <ValidationSection />;
+      case 'utility':
+        return <UtilitySection />;
+      case 'duration':
+        return <DurationSection />;
+      case 'difference':
+        return <DifferenceSection />;
       default:
         return <IntroSection />;
     }
